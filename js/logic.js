@@ -10,7 +10,7 @@ export class FindDoc {
 
   getDoc(){//success and error are callback function names
     $.ajax({
-      url: `https://api.betterdoctor.com/2016-03-01/doctors?query=${this.inputMedical}&skip=0&limit=50&user_key=${apiKey}`,
+      url: `https://api.betterdoctor.com/2016-03-01/doctors?query=${this.inputMedical}&sort=full-name-asc&skip=0&limit=50&user_key=${apiKey}`,
       type: 'GET',
       data: {
         format: 'json'
@@ -18,13 +18,23 @@ export class FindDoc {
 
       success: function(response) {
         console.log(response);
-        // const resultsArray = response.map(function(medicalIssue){
-        //   let issue = {};
-        //   issue[medicalIssue.key] = response.data.practices.;
-        //   return issue;
+        // const nameArray = response.data.map(function(lastNames){
+        //   let names = {};
+        //   names[lastNames.last_name] = names.value;
+        //   return names;
+        // })
+        let lastNameArray = [];
+        for (var i = 0; i < response.data.length; i++){
+        lastNameArray.push(response.data[i].profile.last_name);
+        }
+        console.log(lastNameArray);
+
+        let firstNameArray = [];
+        for (var i = 0; i < response.data.length; i++){
+        firstNameArray.push(response.data[i].profile.first_name);
+        }
+        console.log(firstNameArray);
       },
-        // resultsArray.map(response.data[i].images.fixed_height.url);
-        // }
 
         // success(newArray);//callback function named success with ARGUMENT response that hasn't necessarily been grabbed yet from server
 
