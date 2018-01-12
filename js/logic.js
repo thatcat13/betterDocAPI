@@ -22,7 +22,7 @@ export class FindDoc {
         let nameArray = [];
         for (var i = 0; i < response.data.length; i++){
           if (response.data[i].practices[0])  {
-            nameArray.push(response.data[i].profile.last_name + response.data[i].profile.first_name + 'Accepting new patients: ' +  response.data[i].practices[0].accepts_new_patients + 'Address: ' + response.data[i].practices[0].visit_address.street + ' ' + response.data[i].practices[0].visit_address.city + ', ' + response.data[i].practices[0].visit_address.state + 'Phone number: ' + response.data[i].practices[0].phones[0].number + 'Website: ' + response.data[i].practices[0].website);
+            nameArray.push(response.data[i].profile.last_name + ', ' + response.data[i].profile.first_name + 'Accepting new patients: ' +  response.data[i].practices[0].accepts_new_patients + 'Address: ' + response.data[i].practices[0].visit_address.street + ' ' + response.data[i].practices[0].visit_address.city + ', ' + response.data[i].practices[0].visit_address.state + 'Phone number: ' + response.data[i].practices[0].phones[0].number + 'Website: ' + response.data[i].practices[0].website);
           }
         }
 

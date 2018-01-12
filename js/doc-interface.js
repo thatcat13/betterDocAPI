@@ -15,9 +15,9 @@ $(document).ready(function(){
 
     console.log(newRequest.getDoc());
 
-    newRequest.getDoc(function(bacon, cheese){
-      for (var i = 0; i <bacon.length; i++){
-        $('#results-list').append(`<li>${bacon[i]}</li>`);
+    newRequest.getDoc(function(bacon){
+      for (var i = 0; i < 2; i++){
+        $('#names-list').append(`<li>${bacon[i]}</li>`);
       }
     })
 
