@@ -5,17 +5,21 @@ $(document).ready(function(){
 
   $('#search-form').submit(function(event){
     event.preventDefault();
-    const medical = $('#medical-input').val();
     const name = $('#name-input').val();
     const location = $('#location-input').val();
-    const newRequest = new FindDoc(medical, name, location);
-    console.log(newRequest.inputMedical);
+    const medical = $('#medical-input').val();
+    const newRequest = new FindDoc(name, location, medical);
     console.log(newRequest.inputName);
     console.log(newRequest.inputLocation);
+    console.log(newRequest.inputMedical);
 
     console.log(newRequest.getDoc());
 
-
+    newRequest.getDoc(function(bacon){
+      for (var i = 0; i <bacon.length; i++){
+        $('#results-list').append(`<li>${bacon[i]}</li>`);
+      }
+    })
 
   });//preventDefault
 });//document ready

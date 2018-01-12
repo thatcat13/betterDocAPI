@@ -2,15 +2,16 @@ const apiKey = require('./../.env').apiKey;
 
 
 export class FindDoc {
-  constructor(inputLocation, inputMedical, inputName) {
+  constructor(inputName, inputLocation, inputMedical) {
+    this.inputName = inputName;
     this.inputLocation = inputLocation;
     this.inputMedical = inputMedical;
-    this.inputName = inputName;
   }
 
-  getDoc(){//success and error are callback function names
+// https://api.betterdoctor.com/2016-03-01/doctors?query=${this.inputMedical}&sort=full-name-asc&skip=0&limit=50&user_key=${apiKey}
+  getDoc(success, error){//success and error are callback function names
     $.ajax({
-      url: `https://api.betterdoctor.com/2016-03-01/doctors?query=${this.inputMedical}&sort=full-name-asc&skip=0&limit=50&user_key=${apiKey}`,
+      url: `https://api.betterdoctor.com/2016-03-01/doctors?query=${this.inputMedical}&skip=0&limit=50&user_key=${apiKey}`,
       type: 'GET',
       data: {
         format: 'json'
@@ -18,11 +19,7 @@ export class FindDoc {
 
       success: function(response) {
         console.log(response);
-        // const nameArray = response.data.map(function(lastNames){
-        //   let names = {};
-        //   names[lastNames.last_name] = names.value;
-        //   return names;
-        // })
+
         let lastNameArray = [];
         for (var i = 0; i < response.data.length; i++){
         lastNameArray.push(response.data[i].profile.last_name);
@@ -34,9 +31,24 @@ export class FindDoc {
         firstNameArray.push(response.data[i].profile.first_name);
         }
         console.log(firstNameArray);
+
+        let all = [lastNameArray, firstNameArray];
+        let mix = [];
+        for (var i = 0; all.length !== 0; i++) {
+          var j = 0;
+          while (j < all.length) {
+            if (i >= all[j].length) {
+              all.splice(j, 1);
+            } else {
+              mix.push(all[j][i]);
+              j += 1;
+            }
+          }
+        }
+        console.log(lastNameArray);
+        success(mix);//callback function named success with ARGUMENT response that hasn't necessarily been grabbed yet from server
       },
 
-        // success(newArray);//callback function named success with ARGUMENT response that hasn't necessarily been grabbed yet from server
 
       error: function() {
         // error(response);//callback function named error that's a blank template for doing whatever we want when called in frontend
