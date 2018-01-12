@@ -15,7 +15,7 @@ $(document).ready(function(){
 
     console.log(newRequest.getDoc());
 
-    newRequest.getDoc(function(bacon){
+    newRequest.getDoc(function(bacon, cheese){
       for (var i = 0; i <bacon.length; i++){
         $('#results-list').append(`<li>${bacon[i]}</li>`);
       }

@@ -19,32 +19,17 @@ export class FindDoc {
 
       success: function(response) {
         console.log(response);
-        let resultsArray = [];
+        let nameArray = [];
         for (var i = 0; i < response.data.length; i++){
-          if (typeof(response.data[i].practices[0]) != undefined) {
-            resultsArray.push(response.data[i].profile.last_name + ', ' + response.data[i].profile.first_name + 'street address: ' +  response.data[i].practices[0].accepts_new_patients);
+          if (response.data[i].practices[0])  {
+            nameArray.push(response.data[i].profile.last_name + response.data[i].profile.first_name + 'Accepting new patients: ' +  response.data[i].practices[0].accepts_new_patients + 'Address: ' + response.data[i].practices[0].visit_address.street + ' ' + response.data[i].practices[0].visit_address.city + ', ' + response.data[i].practices[0].visit_address.state + 'Phone number: ' + response.data[i].practices[0].phones[0].number + 'Website: ' + response.data[i].practices[0].website);
           }
         }
 
-        console.log(resultsArray);
+        console.log(nameArray);
 
 
-
-
-        // let all = [lastNameArray, firstNameArray];
-        // let mix = [];
-        // for (var i = 0; all.length !== 0; i++) {
-        //   var j = 0;
-        //   while (j < all.length) {
-        //     if (i >= all[j].length) {
-        //       all.splice(j, 1);
-        //     } else {
-        //       mix.push(all[j][i]);
-        //       j += 1;
-        //     }
-        //   }
-        // }
-        success(resultsArray);//callback function named success with ARGUMENT response that hasn't necessarily been grabbed yet from server
+        success(nameArray);//callback function named success with ARGUMENT response that hasn't necessarily been grabbed yet from server
       },
 
 
