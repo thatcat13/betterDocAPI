@@ -10,7 +10,7 @@ export class FindDoc {
 
   getDoc(){//success and error are callback function names
     $.ajax({
-      url: `https://api.betterdoctor.com/2016-03-01/doctors?last_name=${this.inputName}&query=${this.inputMedical}&location=${this.inputLocation}&skip=0&limit=10&user_key=dfd7d85b06d20bac4aede6a598829871`,
+      url: `https://api.betterdoctor.com/2016-03-01/doctors?query=${this.inputMedical}&skip=0&limit=50&user_key=${apiKey}`,
       type: 'GET',
       data: {
         format: 'json'
