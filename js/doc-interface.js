@@ -6,20 +6,16 @@ $(document).ready(function(){
   $('#search-form').submit(function(event){
     event.preventDefault();
     const name = $('#name-input').val();
-    const location = $('#location-input').val();
     const medical = $('#medical-input').val();
-    const newRequest = new FindDoc(name, location, medical);
-    console.log(newRequest.inputName);
-    console.log(newRequest.inputLocation);
-    console.log(newRequest.inputMedical);
+    const newRequest = new FindDoc(name, medical);
 
-    console.log(newRequest.getDoc());
 
     newRequest.getDoc(function(bacon){
-      for (var i = 0; i < 2; i++){
-        $('#names-list').append(`<li>${bacon[i]}</li>`);
-      }
-    })
+      for (var i = 0; i < bacon.length; i++)
+        $('#results-list').append(`<li>${bacon[i]}</li>`);
+      },  function(error){
+      $('#errors').text("There was an error processing your request. Please try again.");
+    });//getDoc
 
   });//preventDefault
 });//document ready
