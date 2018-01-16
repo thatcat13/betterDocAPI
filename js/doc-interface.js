@@ -12,7 +12,7 @@ $(document).ready(function(){
 
     newRequest.getDoc(function(bacon){
       for (var i = 0; i < bacon.length; i++)
-        $('#results-list').append(`<li>${bacon[i]}</li>`);
+        $('#results-list').append(`<li>${bacon[i]}</li><br>`);
       },  function(error){
       $('#errors').text("There was an error processing your request. Please try again.");
     });//getDoc
