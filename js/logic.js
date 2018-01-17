@@ -18,18 +18,30 @@ export class FindDoc {
       success: function(response) {
         console.log(response);
         for (var i = 0; i < response.data.length; i++){
+          if (response.data[i].practices[0].website){
+            const docWebsite = response.data[i].practices[0].website;
+          } else {
+            const docWebsite = 'sorry, no website available';
+          }
+
           const docName = response.data[i].profile.last_name + ', ' + response.data[i].profile.first_name;
-          const docNewPatients = response.data[i].practices[0].accepts_new_patients;
+
+          if (response.data[i].practices[0].accepts_new_patients){
+            const docNewPatients = 'yes';
+          } else {
+            const docNewPatients = 'not at this time';
+          }
           const docStreetAddress = response.data[i].practices[0].visit_address.street;
           const docCityStateAddress = response.data[i].practices[0].visit_address.city + ', ' + response.data[i].practices[0].visit_address.state;
           const docPhone = response.data[i].practices[0].phones[0].number;
-          const docWebsite = response.data[i].practices[0].website;
+          // const docWebsite = response.data[i].practices[0].website;
+
           // console.log(docName);
           // console.log(docNewPatients);
           // console.log(docStreetAddress);
           // console.log(docCityStateAddress);
           // console.log(docPhone);
-          const docComplete = [`${docName} ${docStreetAddress} ${docCityStateAddress} ${docPhone} ${docWebsite}`];
+          const docComplete = [`${docName} ${docStreetAddress} ${docCityStateAddress} ${docPhone} ${docWebsite} ${docNewPatients}`];
           console.log(docComplete);
         }
         // function hazWebsite(docWebsite){
@@ -39,7 +51,7 @@ export class FindDoc {
         // }
 
 
-      success(resultsArray);//callback function named success with ARGUMENT response that hasn't necessarily been grabbed yet from server
+      success();//callback function named success with ARGUMENT response that hasn't necessarily been grabbed yet from server
       },
 
 
