@@ -17,7 +17,8 @@ body {
 }
 
 label {
-  text-align: center;
+  text-align: right;
+  padding-right: 7px;
 }
 
 #search-btn {
