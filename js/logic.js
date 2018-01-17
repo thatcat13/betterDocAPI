@@ -21,14 +21,14 @@ export class FindDoc {
         for (var i = 0; i < response.data.length; i++){
           const docName = response.data[i].profile.last_name + ', ' + response.data[i].profile.first_name;
           const docStreetAddress = response.data[i].practices[0].visit_address.street;
-          const docCityAddress = response.data[i].practices[0].visit_address.city;
-          const docStateAddress = response.data[i].practices[0].visit_address.state;
-
+          const docCityStateAddress = response.data[i].practices[0].visit_address.city + ', ' + response.data[i].practices[0].visit_address.state;
+          const docPhone = response.data[i].practices[0].phones[0].number;
+          const docWebsite = response.data[i].practices[0].website;
           console.log(docName);
           console.log(docStreetAddress);
-          console.log(docCityAddress);
-          console.log(docStateAddress);
-          // console.log(docFirstName);
+          console.log(docCityStateAddress);
+          console.log(docPhone);
+          console.log(docWebsite);
         }
 
 
