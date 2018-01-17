@@ -17,19 +17,26 @@ export class FindDoc {
 
       success: function(response) {
         console.log(response);
-        let resultsArray = [];
         for (var i = 0; i < response.data.length; i++){
           const docName = response.data[i].profile.last_name + ', ' + response.data[i].profile.first_name;
+          const docNewPatients = response.data[i].practices[0].accepts_new_patients;
           const docStreetAddress = response.data[i].practices[0].visit_address.street;
           const docCityStateAddress = response.data[i].practices[0].visit_address.city + ', ' + response.data[i].practices[0].visit_address.state;
           const docPhone = response.data[i].practices[0].phones[0].number;
           const docWebsite = response.data[i].practices[0].website;
-          console.log(docName);
-          console.log(docStreetAddress);
-          console.log(docCityStateAddress);
-          console.log(docPhone);
-          console.log(docWebsite);
+          // console.log(docName);
+          // console.log(docNewPatients);
+          // console.log(docStreetAddress);
+          // console.log(docCityStateAddress);
+          // console.log(docPhone);
+          const docComplete = [`${docName} ${docStreetAddress} ${docCityStateAddress} ${docPhone} ${docWebsite}`];
+          console.log(docComplete);
         }
+        // function hazWebsite(docWebsite){
+        //   if (docWebsite === undefined){
+        //     return 'sorry, no website available';
+        //   }
+        // }
 
 
       success(resultsArray);//callback function named success with ARGUMENT response that hasn't necessarily been grabbed yet from server
