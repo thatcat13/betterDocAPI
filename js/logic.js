@@ -5,6 +5,11 @@ export class FindDoc {
   constructor(inputName, inputMedical) {
     this.inputName = inputName;
     this.inputMedical = inputMedical;
+    this.docName;
+    this.docStreetAddress;
+    this.docCityStateAddress;
+    this.docWebsite;
+    this.docNewPatients;
   }
 
   getDoc(success, error){//success and error are callback function names
@@ -18,47 +23,40 @@ export class FindDoc {
       success: function(response) {
         console.log(response);
         for (var i = 0; i < response.data.length; i++){
+          this.docName = response.data[i].profile.last_name + ', ' + response.data[i].profile.first_name;
+          this.docStreetAddress = response.data[i].practices[0].visit_address.street;
+          this.docCityStateAddress = response.data[i].practices[0].visit_address.city + ', ' + response.data[i].practices[0].visit_address.state;
+          this.docPhone = response.data[i].practices[0].phones[0].number;
           if (response.data[i].practices[0].website){
-            const docWebsite = response.data[i].practices[0].website;
+            this.docWebsite = response.data[i].practices[0].website;
           } else {
-            const docWebsite = 'sorry, no website available';
+            this.docWebsite = 'sorry, no website available';
           }
 
-          const docName = response.data[i].profile.last_name + ', ' + response.data[i].profile.first_name;
 
           if (response.data[i].practices[0].accepts_new_patients){
-            const docNewPatients = 'yes';
+            this.docNewPatients = 'yes';
           } else {
-            const docNewPatients = 'not at this time';
+            this.docNewPatients = 'not at this time';
           }
-          const docStreetAddress = response.data[i].practices[0].visit_address.street;
-          const docCityStateAddress = response.data[i].practices[0].visit_address.city + ', ' + response.data[i].practices[0].visit_address.state;
-          const docPhone = response.data[i].practices[0].phones[0].number;
-          // const docWebsite = response.data[i].practices[0].website;
 
-          // console.log(docName);
-          // console.log(docNewPatients);
-          // console.log(docStreetAddress);
-          // console.log(docCityStateAddress);
-          // console.log(docPhone);
-          const docComplete = [`${docName} ${docStreetAddress} ${docCityStateAddress} ${docPhone} ${docWebsite} ${docNewPatients}`];
+
+          console.log(this.docName);
+          console.log(this.docNewPatients);
+          console.log(this.docStreetAddress);
+          console.log(this.docCityStateAddress);
+          console.log(this.docPhone);
+          const docComplete = [this.docName, this.docStreetAddress, this.docCityStateAddress, this.docPhone, this.docWebsite, this.docNewPatients];
           console.log(docComplete);
         }
-        // function hazWebsite(docWebsite){
-        //   if (docWebsite === undefined){
-        //     return 'sorry, no website available';
-        //   }
-        // }
 
 
-      success();//callback function named success with ARGUMENT response that hasn't necessarily been grabbed yet from server
+      success(docComplete);//callback function named success with ARGUMENT response that hasn't necessarily been grabbed yet from server
       },
-
 
       error: function() {
         error(response);//callback function named error that's a blank template for doing whatever we want when called in frontend
       }
-
 
     });//ajax
   }//getDoc
