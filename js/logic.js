@@ -23,6 +23,7 @@ export class FindDoc {
       success: function(response) {
         console.log(response);
         for (var i = 0; i < response.data.length; i++){
+          let docComplete = [];
           this.docName = response.data[i].profile.last_name + ', ' + response.data[i].profile.first_name;
           this.docStreetAddress = response.data[i].practices[0].visit_address.street;
           this.docCityStateAddress = response.data[i].practices[0].visit_address.city + ', ' + response.data[i].practices[0].visit_address.state;
@@ -46,12 +47,15 @@ export class FindDoc {
           console.log(this.docStreetAddress);
           console.log(this.docCityStateAddress);
           console.log(this.docPhone);
-          const docComplete = [this.docName, this.docStreetAddress, this.docCityStateAddress, this.docPhone, this.docWebsite, this.docNewPatients];
+          docComplete.push(this.docName, this.docStreetAddress, this.docCityStateAddress, this.docPhone, this.docWebsite, this.docNewPatients);
           console.log(docComplete);
+          let totalDocComplete = [];
+          totalDocComplete.push(docComplete);
+          console.log(totalDocComplete);
         }
+        success(totalDocComplete);//callback function named success with ARGUMENT response that hasn't necessarily been grabbed yet from server
 
 
-      success(docComplete);//callback function named success with ARGUMENT response that hasn't necessarily been grabbed yet from server
       },
 
       error: function() {

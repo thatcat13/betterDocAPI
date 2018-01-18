@@ -13,6 +13,7 @@ $(document).ready(function(){
     newRequest.getDoc(function(bacon){
       for (var i = 0; i < bacon.length; i++)
         $('#results-list').append(`<li>${bacon[0]}</li>`);
+        console.log(bacon[0]);
         $('#results-list').append(`<li>${bacon[1]}</li>`);
         $('#results-list').append(`<li>${bacon[2]}</li>`);
         $('#results-list').append(`<li>${bacon[3]}</li>`);
