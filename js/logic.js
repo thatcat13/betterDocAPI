@@ -42,21 +42,14 @@ export class FindDoc {
           }
 
 
-          console.log(this.docName);
-          console.log(this.docNewPatients);
-          console.log(this.docStreetAddress);
-          console.log(this.docCityStateAddress);
-          console.log(this.docPhone);
           docComplete.push(this.docName, this.docStreetAddress, this.docCityStateAddress, this.docPhone, this.docWebsite, this.docNewPatients);
           console.log(docComplete);
-          let totalDocComplete = [];
-          totalDocComplete.push(docComplete);
-          console.log(totalDocComplete);
-        }
-        success(totalDocComplete);//callback function named success with ARGUMENT response that hasn't necessarily been grabbed yet from server
+        }//for loop
 
 
       },
+
+      // success(response);//callback function named success with ARGUMENT response that hasn't necessarily been grabbed yet from server
 
       error: function() {
         error(response);//callback function named error that's a blank template for doing whatever we want when called in frontend
