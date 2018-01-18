@@ -14,10 +14,15 @@ body {
   display: flex;
   justify-content: space-around;
   margin-bottom: 50px;
+  align-items: center;
 }
 
 label {
   text-align: right;
+  padding: 10px;
+}
+
+input {
   padding-right: 7px;
 }
 
@@ -30,4 +35,13 @@ label {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 20px;
+}
+
+ul {
+  margin: 10px;
+}
+
+ul {
+  margin-bottom: 10px;
 }
